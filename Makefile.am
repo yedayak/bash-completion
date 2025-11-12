@@ -40,3 +40,6 @@ install-data-hook:
 	    $(DESTDIR)$(datadir)/$(PACKAGE)/bash_completion >$$tmpfile && \
 	cat $$tmpfile >$(DESTDIR)$(datadir)/$(PACKAGE)/bash_completion && \
 	rm $$tmpfile
+
+dist-hook:
+	find $(distdir) -exec touch -t "$$(git log -1 --format=%cd --date=format-local:%Y%m%d%H%M.%S)" {} +
